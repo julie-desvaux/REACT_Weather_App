@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 // CONTEXT
 export const favoritesContext = createContext();
@@ -20,13 +21,16 @@ function App() {
 	return (
 		// Context avec le state
 		<favoritesContext.Provider value={{ favoritesCities, setFavoritesCities }}>
-			<Navbar />
-			<Router>
-				<Routes>
-					<Route exact path="/" element={<Home />} />
-					<Route path="/favorites" element={<Favorites />} />
-				</Routes>
-			</Router>
+			<div className=" min-h-screen flex flex-col justify-between">
+				<Router>
+					<Navbar />
+					<Routes>
+						<Route exact path="/" element={<Home />} />
+						<Route path="/favorites" element={<Favorites />} />
+					</Routes>
+				</Router>
+				<Footer />
+			</div>
 			<ToastContainer />
 		</favoritesContext.Provider>
 	);

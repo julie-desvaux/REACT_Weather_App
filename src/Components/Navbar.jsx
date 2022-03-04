@@ -1,5 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { useLocation } from "react-router-dom";
 
 const navigation = [
 	{ name: "Home", href: "/", current: true },
@@ -11,6 +12,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+	const location = useLocation();
+	console.log(location);
 	return (
 		<Disclosure as="nav" className="bg-gray-800">
 			{({ open }) => (
@@ -31,15 +34,13 @@ export default function Navbar() {
 							<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
 								<div className="flex-shrink-0 flex items-center">
 									<img
-										className="block lg:hidden h-8 w-auto"
+										className="block h-8 w-auto"
 										src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
 										alt="Workflow"
 									/>
-									<img
-										className="hidden lg:block h-8 w-auto"
-										src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-										alt="Workflow"
-									/>
+									<h1 className="hidden lg:block h-8 ml-3 text-white font-bold flex justify-center align-middle py-1">
+										Weather App
+									</h1>
 								</div>
 								<div className="hidden sm:block sm:ml-6">
 									<div className="flex space-x-4">
@@ -48,12 +49,12 @@ export default function Navbar() {
 												key={item.name}
 												href={item.href}
 												className={classNames(
-													item.current
+													item.href === location.pathname
 														? "bg-gray-900 text-white"
 														: "text-gray-300 hover:bg-gray-700 hover:text-white",
 													"px-3 py-2 rounded-md text-sm font-medium"
 												)}
-												aria-current={item.current ? "page" : undefined}
+												aria-current={item.href === location.pathname ? "page" : undefined}
 											>
 												{item.name}
 											</a>

@@ -2,6 +2,7 @@ import React from "react";
 
 // props est un objet qui contient une clé weatherCity, je peux donc déstructurer l'objet props
 function Card({ weatherCity }) {
+	console.log("CARD#weatherCity :", weatherCity);
 	return (
 		<div className="max-w-sm rounded overflow-hidden shadow-lg">
 			<img
