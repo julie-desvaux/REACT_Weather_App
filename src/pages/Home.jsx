@@ -12,14 +12,20 @@ function Home() {
 	const [weatherCity, setWeatherCity] = useState(null);
 	const [buttonClick, setButtonClick] = useState("buttonFetch");
 
-	console.log(context.favoritesCities);
+	// console.log(weatherCity);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (city) {
 			if (buttonClick === "buttonFetch") {
 				fetchApi(city)
-					.then((res) => setWeatherCity(res))
+					.then((res) => {
+						if (res.cod !== 200) {
+							toast.error("Pas de résultats pour cette ville");
+						} else {
+							setWeatherCity(res);
+						}
+					})
 					.catch((err) => console.log(err));
 			} else {
 				// Enregistrement dans le local storage

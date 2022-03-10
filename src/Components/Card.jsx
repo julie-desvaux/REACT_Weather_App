@@ -1,8 +1,7 @@
 import React from "react";
 
 // props est un objet qui contient une clé weatherCity, je peux donc déstructurer l'objet props
-function Card({ weatherCity }) {
-	console.log("CARD#weatherCity :", weatherCity);
+function Card({ weatherCity, onClick }) {
 	return (
 		<div className="max-w-sm rounded overflow-hidden shadow-lg">
 			<img
@@ -19,6 +18,17 @@ function Card({ weatherCity }) {
 					Min: {Math.round(weatherCity.main.temp_min)} °C / Max: {Math.round(weatherCity.main.temp_max)} °C
 				</p>
 			</div>
+			{onClick && (
+				<div className="py-3 flex justify-center">
+					<button
+						type="button"
+						className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+						onClick={onClick}
+					>
+						Supprimer le favori
+					</button>
+				</div>
+			)}
 		</div>
 	);
 }

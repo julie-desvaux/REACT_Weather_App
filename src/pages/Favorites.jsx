@@ -22,11 +22,20 @@ function Favorites() {
 	const fetchFunc = async () => {
 		const promises = [];
 		context.favoritesCities.forEach((city) => promises.push(fetchApi(city)));
-		await Promise.all(promises).then((res) => setWeatherCities([...weatherCities, res]));
+		await Promise.all(promises).then((res) => setWeatherCities(res));
 		setIsloading(false);
 	};
 
-	console.log("FAVORITES#weatherCities :", weatherCities);
+	const removeFavorite = (index) => {
+		const copyWeatherCities = [...weatherCities];
+		copyWeatherCities.splice(index, 1);
+		setWeatherCities(copyWeatherCities);
+
+		// localStorage
+		const copyFavoritesCities = [...context.favoritesCities];
+		copyFavoritesCities.splice(index, 1);
+		localStorage.setItem("favoritesCities", JSON.stringify(copyFavoritesCities));
+	};
 
 	if (isLoading) {
 		return <h3>Loading ...</h3>;
@@ -49,9 +58,16 @@ function Favorites() {
 						</button>
 					</>
 				) : (
-					weatherCities[0].map((weatherCity, index) => {
-						console.log("FAVORITES#map :", weatherCity);
-						return <Card key={index} weatherCity={weatherCity} />;
+					weatherCities.map((weatherCity, index) => {
+						// console.log("FAVORITES#map :", weatherCity);
+						return (
+							<Card
+								key={index}
+								id={index}
+								weatherCity={weatherCity}
+								onClick={() => removeFavorite(index)}
+							/>
+						);
 					})
 				)}
 			</div>

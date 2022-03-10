@@ -3,8 +3,8 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useLocation } from "react-router-dom";
 
 const navigation = [
-	{ name: "Home", href: "/", current: true },
-	{ name: "Favorites", href: "/favorites", current: false },
+	{ name: "Accueil", href: "/", current: true },
+	{ name: "Favoris", href: "/favorites", current: false },
 ];
 
 function classNames(...classes) {
