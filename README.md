@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+## Code réalisé avec quelques apprenants de la promo 6 de Konexio.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
